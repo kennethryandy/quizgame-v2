@@ -9,7 +9,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 
-const Navbar = ({ darkMode }) => {
+const Navbar = ({ handleDarkmode, theme }) => {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -23,8 +23,9 @@ const Navbar = ({ darkMode }) => {
 						color="inherit"
 						aria-label="menu"
 						sx={{ mr: 2 }}
+						onClick={handleDarkmode}
 					>
-						{darkMode ? <DarkModeIcon /> : <LightModeIcon />}
+						{theme.palette.mode ? <DarkModeIcon /> : <LightModeIcon />}
 					</IconButton>
 				</Toolbar>
 			</AppBar>
