@@ -1,0 +1,122 @@
+{
+	"backupQuestion": [
+		{
+			"category": "Geography",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "Which of the following countries does NOT recognize Armenia as an independent country?",
+			"correct_answer": "Pakistan",
+			"incorrect_answers": [
+					"Iran",
+					"Turkey",
+					"Azerbaijan"
+			]
+		},
+		{
+			"category": "General Knowledge",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "The term &quot;scientist&quot; was coined in which year?",
+			"correct_answer": "1833",
+			"incorrect_answers": [
+					"1933",
+					"1942",
+					"1796"
+			]
+		},
+		{
+			"category": "Entertainment: Television",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "In the episode of SpongeBob SquarePants, &quot;Survival of the Idiots&quot;, Spongebob called Patrick which nickname?",
+			"correct_answer": "Pinhead",
+			"incorrect_answers": [
+					"Starfish",
+					"Larry",
+					"Dirty Dan"
+			]
+		},
+		{
+			"category": "Science: Computers",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "What is the correct term for the metal object in between the CPU and the CPU fan within a computer system?",
+			"correct_answer": "Heat Sink",
+			"incorrect_answers": [
+					"CPU Vent",
+					"Temperature Decipator",
+					"Heat Vent"
+			]
+		},
+		{
+			"category": "Entertainment: Board Games",
+			"type": "multiple",
+			"difficulty": "hard",
+			"question": "In standard Monopoly, what&#039;s the rent if you land on Park Place with no houses?",
+			"correct_answer": "$35",
+			"incorrect_answers": [
+					"$30",
+					"$50",
+					"$45"
+			]
+		},
+		{
+			"category": "Entertainment: Video Games",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "This weapon in Counter-Strike: Global Offensive does not exist in real life.",
+			"correct_answer": "M4A4",
+			"incorrect_answers": [
+					"AWP",
+					"M4A1",
+					"MP9"
+			]
+		},
+		{
+			"category": "Entertainment: Video Games",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "In &quot;Paper Mario: The Thousand Year Door&quot;, what is Hooktail&#039;s weakness?",
+			"correct_answer": "The Sound of Crickets",
+			"incorrect_answers": [
+					"Attacks from Koopas",
+					"The &quot;Ice Storm&quot; Item",
+					"The Hammer"
+			]
+		},
+		{
+			"category": "General Knowledge",
+			"type": "multiple",
+			"difficulty": "hard",
+			"question": "What is the weight of a Gold Bar in Fallout: New Vegas?",
+			"correct_answer": "35 Pounds",
+			"incorrect_answers": [
+					"30 Pounds",
+					"40 Pounds",
+					"32.50 Pounds"
+			]
+		},
+		{
+			"category": "Sports",
+			"type": "boolean",
+			"difficulty": "easy",
+			"question": "There are a total of 20 races in Formula One 2016 season.",
+			"correct_answer": "False",
+			"incorrect_answers": [
+					"True"
+			]
+		},
+		{
+			"category": "Entertainment: Music",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "What was Raekwon the Chefs debut solo album?",
+			"correct_answer": "Only Built 4 Cuban Linx",
+			"incorrect_answers": [
+					"Shaolin vs Wu-Tang",
+					"The Wild",
+					"The Lex Diamond Story"
+			]
+		}
+	]
+}

@@ -12,7 +12,7 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 const Navbar = ({ handleDarkmode, theme }) => {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static">
+			<AppBar position='static'>
 				<Toolbar>
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						Quiz Game
@@ -25,7 +25,7 @@ const Navbar = ({ handleDarkmode, theme }) => {
 						sx={{ mr: 2 }}
 						onClick={handleDarkmode}
 					>
-						{theme.palette.mode ? <DarkModeIcon /> : <LightModeIcon />}
+						{theme.palette.mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
 					</IconButton>
 				</Toolbar>
 			</AppBar>
