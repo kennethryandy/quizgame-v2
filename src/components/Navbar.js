@@ -7,15 +7,24 @@ import IconButton from '@mui/material/IconButton';
 
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { styled } from '@mui/material/styles';
+
+const Brand = styled(Typography)(() => ({
+	cursor: 'pointer',
+	width: 'fit-content',
+	"&:hover": {
+		textDecoration: 'underline'
+	}
+}));
 
 
-const Navbar = ({ handleDarkmode, theme }) => {
+const Navbar = ({ handleDarkmode, theme, handleReset }) => {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position='static'>
 				<Toolbar>
-					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-						Quiz Game
+					<Typography component="div" sx={{ flexGrow: 1 }}>
+						<Brand variant="h6" onClick={handleReset}>Quiz Game</Brand>
 					</Typography>
 					<IconButton
 						size="large"

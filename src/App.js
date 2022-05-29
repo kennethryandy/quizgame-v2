@@ -11,6 +11,7 @@ import AppBarSpacer from './utils/AppBarSpacer';
 import Loading from './components/Loading';
 import Question from './components/Question';
 import shuffle from './utils/shuffle';
+import FinalScore from './components/FinalScore';
 
 
 const StyledContainer = styled(Container)(({ theme }) => ({
@@ -74,20 +75,26 @@ function App () {
 	const [loading, setLoading] = useState(false);
 	const [theme, setTheme] = useState(lightTheme);
 	const [score, setScore] = useState(0);
+	const [showScore, setShowScore] = useState(false);
 
 	const handleDarkmode = useCallback(() => {
 		setTheme(state => state.palette.mode === "dark" ? lightTheme : darkTheme);
 	}, [setTheme]);
 
 	const startGame = async ({ cat, dif, type }) => {
-		// const API_URL = `https://opentdb.com/api.php?amount=10${cat !== "any" ? "&category=" + cat : ""}${dif !== "any" ? "&difficulty=" + dif : ""}${type !== "any" ? "&type=" + type : ""}`;
+		const API_URL = `https://opentdb.com/api.php?amount=10${cat !== "any" ? "&category=" + cat : ""}${dif !== "any" ? "&difficulty=" + dif : ""}${type !== "any" && cat !== "19" ? "&type=" + type : ""}`;
 		setLoading(true);
-		// const res = await (await fetch(API_URL)).json();
-		// if (res && res.response_code === 0) {
-		// 	dispatch({ type: "SET_QUESTION", payload: res.results });
-		// }else {
-		setInitialQuestion(backupQuestion.backupQuestion);
-		// }
+		try {
+			const res = await (await fetch(API_URL)).json();
+			if (res && res.response_code === 0) {
+				setInitialQuestion(res.results);
+			} else {
+				setInitialQuestion(backupQuestion.backupQuestion);
+			}
+		} catch (err) {
+			console.log(err);
+			setInitialQuestion(backupQuestion.backupQuestion);
+		}
 		setStart(true);
 		setLoading(false)
 	};
@@ -109,16 +116,27 @@ function App () {
 		setQuestions(tempQuestion);
 	}, [questions]);
 
+	const handleReset = () => {
+		setLoading(true);
+		setQuestions([]);
+		setShowScore(false);
+		setScore(0);
+		setStart(false);
+		setLoading(false);
+	}
+
 	return (
 		<ThemeProvider theme={responsiveFontSizes(createTheme(theme))}>
 			<Paper square elevation={0} sx={{ minHeight: "100vh" }}>
-				<Navbar handleDarkmode={handleDarkmode} theme={theme} />
+				<Navbar handleDarkmode={handleDarkmode} theme={theme} handleReset={handleReset} />
 				<AppBarSpacer />
 				<StyledContainer>
 					{loading ? (
 						<Loading />
 					) : (
-						start ? <Question questions={questions} theme={theme} setScore={setScore} /> : <Selection startGame={startGame} />
+						start ?
+							!showScore ? <Question questions={questions} theme={theme} setScore={setScore} setShowScore={setShowScore} /> : <FinalScore score={score} theme={theme} handleReset={handleReset} questions={questions} />
+							: <Selection startGame={startGame} />
 					)}
 				</StyledContainer>
 			</Paper>

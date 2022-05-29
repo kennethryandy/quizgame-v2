@@ -22,7 +22,7 @@ const Selection = ({ startGame }) => {
 		setInputs(state => ({
 			...state,
 			[e.target.name]: e.target.value
-		}))
+		}));
 	}
 	return (
 		<Box width={"100%"} maxWidth="md">
@@ -74,6 +74,7 @@ const Selection = ({ startGame }) => {
 					value={inputs.type}
 					onChange={handleChange}
 					variant="filled"
+					disabled={inputs.cat === "19"}
 				>
 					<MenuItem value="any">Any</MenuItem>
 					<MenuItem value="multiple">Multiple Choice</MenuItem>

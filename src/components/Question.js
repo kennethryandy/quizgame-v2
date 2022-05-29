@@ -26,17 +26,21 @@ const AnswerButton = styled(Button)(({ theme }) => ({
 		"&:hover": {
 			color: "#424242",
 			backgroundColor: "#fff"
+		},
+		"&.Mui-disabled": {
+			color: "rgba(255, 255, 255, 0.12)",
+			border: "1px solid rgba(255, 255, 255, 0.12)"
 		}
 	},
 	"&.success": {
 		backgroundColor: theme.palette.success.light
 	},
 	"&.Mui-disabled": {
-		color: "#fff"
+		color: "#fff",
 	}
 }));
 
-const Question = ({ questions, theme, setScore }) => {
+const Question = ({ questions, theme, setScore, setShowScore }) => {
 	const { mode } = theme.palette;
 	const [step, setStep] = useState(0);
 	const [showAns, setShowAns] = useState(false);
@@ -44,6 +48,7 @@ const Question = ({ questions, theme, setScore }) => {
 	const handleSelectAnswer = (ans) => {
 		setShowAns(true);
 		if (step === 9) {
+			setShowScore(true);
 			return;
 		}
 		if (ans === questions[step].correct_answer) {
@@ -52,7 +57,7 @@ const Question = ({ questions, theme, setScore }) => {
 		setTimeout(() => {
 			setShowAns(false);
 			setStep(step + 1);
-		}, 1200);
+		}, 800);
 	}
 
 	return (
