@@ -114,7 +114,7 @@ function App () {
 			}];
 		}, []);
 		setQuestions(tempQuestion);
-	}, [questions]);
+	}, [setQuestions]);
 
 	const handleReset = () => {
 		setLoading(true);
