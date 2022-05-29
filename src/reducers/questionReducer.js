@@ -1,7 +1,6 @@
-import { useReducer } from "react";
 import shuffle from '../utils/shuffle';
 
-const reducer = (state, action) => {
+export const questionReducer = (state, action) => {
 	switch (action.type) {
 		case "SET_QUESTION":
 			const newState = action.payload.reduce((acc, curr) => {
@@ -17,17 +16,9 @@ const reducer = (state, action) => {
 					answers: shuffledAnswers
 				}];
 			}, []);
-			console.log(newState);
-			return state;
+			// console.log(newState);
+			return newState;
 		default:
 			return state;
 	}
 }
-
-const useQuestionReducer = () => {
-	const [state, dispatch] = useReducer(reducer, []);
-
-	return [state, dispatch];
-}
-
-export default useQuestionReducer;

@@ -1,15 +1,16 @@
 
-import { useCallback, useState, memo } from 'react';
+import { useCallback, useState, memo, useReducer } from 'react';
 import { ThemeProvider, createTheme, responsiveFontSizes, styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import useQuestionReducer from './reducers/useQuestionReducer';
+import { questionReducer } from './reducers/questionReducer';
 import backupQuestion from "./utils/backupQuestion.json";
 //Components
 import Navbar from "./components/Navbar";
 import Selection from './components/Selection';
 import AppBarSpacer from './utils/AppBarSpacer';
 import Loading from './components/Loading';
+import Question from './components/Question';
 
 
 const StyledContainer = styled(Container)(({ theme }) => ({
@@ -68,10 +69,11 @@ const lightTheme = {
 
 
 function App () {
-	const [_, dispatch] = useQuestionReducer();
+	const [questionState, dispatch] = useReducer(questionReducer, []);
 	const [start, setStart] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [theme, setTheme] = useState(lightTheme);
+	const [score, setScore] = useState(0);
 
 	const handleDarkmode = useCallback(() => {
 		setTheme(state => state.palette.mode === "dark" ? lightTheme : darkTheme);
@@ -99,7 +101,7 @@ function App () {
 					{loading ? (
 						<Loading />
 					) : (
-						start ? <div>sdsd</div> : <Selection startGame={startGame} />
+						start ? <Question questionState={questionState} dispatch={dispatch} theme={theme} setScore={setScore} /> : <Selection startGame={startGame} />
 					)}
 				</StyledContainer>
 			</Paper>
