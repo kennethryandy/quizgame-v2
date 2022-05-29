@@ -48,7 +48,9 @@ const Question = ({ questions, theme, setScore, setShowScore }) => {
 	const handleSelectAnswer = (ans) => {
 		setShowAns(true);
 		if (step === 9) {
-			setShowScore(true);
+			setTimeout(() => {
+				setShowScore(true);
+			}, 800);
 			return;
 		}
 		if (ans === questions[step].correct_answer) {
