@@ -36,7 +36,7 @@ const AnswerButton = styled(Button)(({ theme }) => ({
 	}
 }));
 
-const Question = ({ questionState, dispatch, theme, setScore }) => {
+const Question = ({ questions, theme, setScore }) => {
 	const { mode } = theme.palette;
 	const [step, setStep] = useState(0);
 	const [showAns, setShowAns] = useState(false);
@@ -46,7 +46,7 @@ const Question = ({ questionState, dispatch, theme, setScore }) => {
 		if (step === 9) {
 			return;
 		}
-		if (ans === questionState[step].correct_answer) {
+		if (ans === questions[step].correct_answer) {
 			setScore(score => score + 1);
 		}
 		setTimeout(() => {
@@ -57,17 +57,17 @@ const Question = ({ questionState, dispatch, theme, setScore }) => {
 
 	return (
 		<Box width={"100%"} maxWidth="md">
-			<Typography gutterBottom variant="h4" textAlign="center">{questionState[step]?.category}</Typography>
+			<Typography gutterBottom variant="h4" textAlign="center">{questions[step]?.category}</Typography>
 			<Divider variant="middle" />
 			<AnswerTypography paddingY={2} variant="h5" textAlign="center">
-				<span dangerouslySetInnerHTML={{ __html: questionState[step]?.question }} />
+				<span dangerouslySetInnerHTML={{ __html: questions[step]?.question }} />
 			</AnswerTypography>
 			<Divider variant="middle" />
 			<StyledAnswerGrid container spacing={2}>
-				{questionState[step].answers.map((ans, i) => (
+				{questions[step].answers.map((ans, i) => (
 					<Grid item xs={12} sm={6} key={i}>
 						<AnswerButton disabled={showAns} className={
-							ans === questionState[step].correct_answer && showAns ? "success" : "" ||
+							ans === questions[step].correct_answer && showAns ? "success" : "" ||
 								mode === "dark" ? "dark" : ""}
 							onClick={() => handleSelectAnswer(ans)} variant={mode === "dark" ? "outlined" : "contained"} fullWidth>
 							<span dangerouslySetInnerHTML={{ __html: ans }} />

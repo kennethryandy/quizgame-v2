@@ -1,9 +1,8 @@
 
-import { useCallback, useState, memo, useReducer } from 'react';
+import { useCallback, useState, memo } from 'react';
 import { ThemeProvider, createTheme, responsiveFontSizes, styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import { questionReducer } from './reducers/questionReducer';
 import backupQuestion from "./utils/backupQuestion.json";
 //Components
 import Navbar from "./components/Navbar";
@@ -11,6 +10,7 @@ import Selection from './components/Selection';
 import AppBarSpacer from './utils/AppBarSpacer';
 import Loading from './components/Loading';
 import Question from './components/Question';
+import shuffle from './utils/shuffle';
 
 
 const StyledContainer = styled(Container)(({ theme }) => ({
@@ -69,7 +69,7 @@ const lightTheme = {
 
 
 function App () {
-	const [questionState, dispatch] = useReducer(questionReducer, []);
+	const [questions, setQuestions] = useState([]);
 	const [start, setStart] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [theme, setTheme] = useState(lightTheme);
@@ -86,11 +86,28 @@ function App () {
 		// if (res && res.response_code === 0) {
 		// 	dispatch({ type: "SET_QUESTION", payload: res.results });
 		// }else {
-		dispatch({ type: "SET_QUESTION", payload: backupQuestion.backupQuestion });
+		setInitialQuestion(backupQuestion.backupQuestion);
 		// }
 		setStart(true);
 		setLoading(false)
 	};
+
+	const setInitialQuestion = useCallback((data) => {
+		const tempQuestion = data.reduce((acc, curr) => {
+			const shuffledAnswers = shuffle([
+				...curr.incorrect_answers,
+				curr.correct_answer
+			]);
+			return [...acc, {
+				category: curr.category,
+				question: curr.question,
+				difficulty: curr.difficulty,
+				correct_answer: curr.correct_answer,
+				answers: shuffledAnswers
+			}];
+		}, []);
+		setQuestions(tempQuestion);
+	}, [questions]);
 
 	return (
 		<ThemeProvider theme={responsiveFontSizes(createTheme(theme))}>
@@ -101,7 +118,7 @@ function App () {
 					{loading ? (
 						<Loading />
 					) : (
-						start ? <Question questionState={questionState} dispatch={dispatch} theme={theme} setScore={setScore} /> : <Selection startGame={startGame} />
+						start ? <Question questions={questions} theme={theme} setScore={setScore} /> : <Selection startGame={startGame} />
 					)}
 				</StyledContainer>
 			</Paper>
