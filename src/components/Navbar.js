@@ -34,7 +34,7 @@ const Navbar = ({ handleDarkmode, theme, handleReset }) => {
 						sx={{ mr: 2 }}
 						onClick={handleDarkmode}
 					>
-						{theme.palette.mode === "dark" ? <DarkModeIcon /> : <LightModeIcon />}
+						{theme.palette.mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
 					</IconButton>
 				</Toolbar>
 			</AppBar>
